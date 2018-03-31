@@ -3,11 +3,13 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
+		classpath "com.bmuschko:gradle-docker-plugin:3.2.5"
         classpath "com.github.jengelman.gradle.plugins:shadow:2.0.3"
 		classpath "io.ratpack:ratpack-gradle:1.5.4"
 	}
 }
 
+apply plugin: "com.bmuschko.docker-java-application"
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: "io.ratpack.ratpack-java"
 apply plugin: "java"
@@ -23,3 +25,9 @@ dependencies {
 }
 
 mainClassName = "Main"
+
+docker {
+    javaApplication {
+        port = 5050
+    }
+}
